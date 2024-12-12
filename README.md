@@ -11,7 +11,7 @@ graph TD
 	A[Server] -->|Task| B[ServiceCenter]
 	C[Monster] -->|Task| A
     B -->|HeartBeat| A
-    style A fill:#ffff00;
+    style A fill:#4b5cc4;
     
  
 ```
