@@ -5,12 +5,11 @@
  Source Server Type    : MySQL
  Source Server Version : 80040 (8.0.40-0ubuntu0.22.04.1)
  Source Host           : 192.168.16.103:3306
- Source Schema         : cloudcluster
+ Source Schema         : CloudCluster
 
  Target Server Type    : MySQL
  Target Server Version : 80040 (8.0.40-0ubuntu0.22.04.1)
  File Encoding         : 65001
-
 */
 
 SET NAMES utf8mb4;
@@ -28,9 +27,10 @@ CREATE TABLE `cmds`  (
   `lat` datetime NOT NULL,
   `status` int UNSIGNED NOT NULL DEFAULT 0,
   `autoid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `nvb` datetime NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `cmd_index`(`id` ASC, `target` ASC, `status` ASC, `autoid` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1390 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1463 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for hosts
@@ -45,7 +45,7 @@ CREATE TABLE `hosts`  (
   `reg_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `host_index`(`id` ASC, `dev_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 84 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 86 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for msgs
@@ -59,7 +59,7 @@ CREATE TABLE `msgs`  (
   `create_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `msg_index`(`id` ASC, `dev_id` ASC, `task_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2040 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 2166 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for users
