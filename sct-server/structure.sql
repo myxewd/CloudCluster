@@ -10,6 +10,7 @@
  Target Server Type    : MySQL
  Target Server Version : 80040 (8.0.40-0ubuntu0.22.04.1)
  File Encoding         : 65001
+
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +31,7 @@ CREATE TABLE `cmds`  (
   `nvb` datetime NULL DEFAULT '1970-01-01 00:00:00',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `cmd_index`(`id` ASC, `target` ASC, `status` ASC, `autoid` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1463 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for hosts
@@ -45,7 +46,7 @@ CREATE TABLE `hosts`  (
   `reg_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `host_index`(`id` ASC, `dev_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 86 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for msgs
@@ -55,11 +56,11 @@ CREATE TABLE `msgs`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `dev_id` int NOT NULL,
   `task_id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
-  `msg` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `msg` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `create_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `msg_index`(`id` ASC, `dev_id` ASC, `task_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2166 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for users
@@ -69,12 +70,13 @@ CREATE TABLE `users`  (
   `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `passwd` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `reg_time` datetime NOT NULL,
+  `perm` int(10) UNSIGNED ZEROFILL NULL DEFAULT NULL,
+  `reg_time` datetime NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `last_login_time` datetime NULL DEFAULT NULL,
   `last_login_ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL,
   `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `fail` bigint NOT NULL,
+  `fail` bigint NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 0 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
