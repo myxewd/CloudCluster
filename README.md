@@ -60,6 +60,22 @@ sct-base.exe -port 8071
 
 编译后得到`CCServiceCenter.dll`备用。
 
+## ServiceCenter-DNS
+
+在CloudCluster-DNS分支中，提供了基于DNS查询服务器地址的ServiceCenter程序。配置过程如下。
+
+打开`dllmain.e`，并修改下列项。
+
+| 项名               | 描述                                     | 示例值            |
+| ------------------ | ---------------------------------------- | ----------------- |
+| 常量表->dns_server | 用于dns查询的公共（或私有）dns服务器地址 | 1.1.1.1           |
+| 常量表->dns_atlas  | 指向您的真实服务器域名的CNAME域名记录    | cname.example.com |
+| 常量表->dns_suffix | 用于拼接完整ServiceUrl的后缀文本串       | /                 |
+
+配置完成后，您可以通过访问`http://`+`CNAME目标域名`+`dns_suffix`+`status`检查配置是否无误。
+
+DNS版本的ServiceCenter具有一个限制，即您必须将SCT-Base服务直接部署（或通过反向代理）暴露到`80`端口上，并配置域名指向其。
+
 ## Installer
 
 此为ServiceCenter的安装器，请您打开`CloudCluster-Installer.e`并做如下一项修改。
